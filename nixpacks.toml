@@ -1,5 +1,4 @@
-[phases.setup]
-nixPkgs = ["nodejs-18", "yarn"]
+nixPkgs = ["nodejs"]
 
 [phases.strapi-install]
 cmds = ["npm install"]
@@ -9,6 +8,10 @@ onlyIncludeFiles = ["strapi/"]
 cmds = ["npm install"]
 onlyIncludeFiles = ["sveltekit/"]
 
-[start]
-cmd = "npm run build && npm run start"
+[start.strapi]
+cmd = "npm --prefix ./strapi run start"
 onlyIncludeFiles = ["strapi/"]
+
+[start.sveltekit]
+cmd = "npm --prefix ./sveltekit run dev"
+onlyIncludeFiles = ["sveltekit/"]
