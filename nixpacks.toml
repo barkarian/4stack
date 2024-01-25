@@ -9,10 +9,6 @@ onlyIncludeFiles = ["strapi/"]
 cmds = ["npm install"]
 onlyIncludeFiles = ["sveltekit/"]
 
-[start.strapi]
-cmd = "npm run build"
+[start]
+cmd = "npm run build && npm run start"
 onlyIncludeFiles = ["strapi/"]
-
-[start.sveltekit]
-cmd = "npm run dev"
-onlyIncludeFiles = ["sveltekit/"]
