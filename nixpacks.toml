@@ -1,2 +1,0 @@
-[phases.aaa]
-onlyIncludeFiles = ["strapi/"]
