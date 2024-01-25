@@ -4,5 +4,5 @@ nixPkgs = ["nodejs-18"]
 [phases.sveltekit-install]  
 cmds = ["npm install"]
 
-[start.sveltekit]
+[start]
 cmd = "npm run dev" 
