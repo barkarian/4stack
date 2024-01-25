@@ -1,4 +1,4 @@
-nixPkgs = ["nodejs"]
+nixPkgs = ["nodejs","npm"]
 
 [phases.strapi-install]
 cmds = ["npm install"]
