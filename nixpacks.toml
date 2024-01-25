@@ -1,12 +1,2 @@
-nixPkgs = ["nodejs","npm"]
-
-[phases.strapi-install]
-cmds = ["npm install"]
+[phases.aaa]
 onlyIncludeFiles = ["strapi/"]
-
-[phases.sveltekit-install]
-cmds = ["npm install"]
-onlyIncludeFiles = ["sveltekit/"]
-
-[start]
-cmd = "./start.sh"
