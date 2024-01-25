@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs-18"] 
-
-[phases.strapi-install]
-cmds = ["npm install"]
-
-[start]
-cmd = "npm run build && npm run start"

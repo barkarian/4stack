@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs-18"] 
-
-[phases.sveltekit-install]  
-cmds = ["npm install"]
-
-[start]
-cmd = "npm run dev" 
