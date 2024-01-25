@@ -26,3 +26,25 @@ services:
       - ./public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
+  sveltekit:
+    container_name: sveltekit
+    build: ./sveltekit
+    image: sveltekit:latest
+    restart: unless-stopped
+    version: "3"
+    services:
+      sveltekit:
+        container_name: sveltekit
+        build: ./sveltekit
+        image: sveltekit:latest
+        restart: unless-stopped
+        env_file: ./sveltekit/.env
+        volumes:
+          - ./sveltekit:/opt/app
+        ports:
+          - "4173:4173"
+        command: npm run build && npm run preview
+    volumes:
+      - ./sveltekit:/opt/app
+    ports:
+      - "4173:4173"
