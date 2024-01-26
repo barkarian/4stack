@@ -13,7 +13,8 @@
 3. Configure the Auth0 application settings in the settings tab SET:
 - Allowed Logout URLs: http://localhost:5173
 - Allowed Web Origins: http://localhost:5173
-Scroll down to Advanced Settings->Grand Types(tab):
+
+*Scroll down to Advanced Settings->Grand Types(tab):*
 - Implicit
 - Authorization Code
 - Refresh Token
@@ -28,8 +29,26 @@ cd dev-utils
 npm install
 npm run generate-env-variables # will generate initial env variables for strapi
 ```
-copy .env.example to .env and fill the values
-remember to add **/dev-utils/.env->AUTH0_SETTINGS_URL** from *Setup Auth0 Application*
+- copy .env.example to .env and fill the values
+- remember to add **/dev-utils/.env->AUTH0_SETTINGS_URL** from *Setup Auth0 Application*
+
+###### Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
+- cd strapi
+- npm run develp
+- Start strapi
+    - cd strapi && npm run dev
+    Find Auth0 Provider
+    - Go to http://localhost:1337/admin/settings/users-permissions/providers
+    - Click on the "Connect a provider" button
+    - Select Auth0
+    - Fill in the form with the Auth0 settings
+    - Click on save
+    - Configure Provider
+        - Enable: TRUE
+        - Client ID: 'Your Auth0 Client ID'
+        - Client Secret: 'Your Auth0 Client Secret'
+        - Host URI (Subdomain): 'Your Auth0 tenant url',(looks like this:dev-0e2aajac.us and it derives from - dev-0e2aajac.us.auth0.com)
+        - The redirect URL to your front-end app: http://localhost:5173/auth/connect/auth0/callback
 
 ###### Spin up dev-utils
 ```
@@ -41,22 +60,5 @@ npm run start
     - PUBLIC_STRAPI_URL enviroment variables will be set to this "NGROK_TUNNEL"(both on sveltekit/.env and strapi/.env)
     - *You will be reminded to update the auth0 configuration each time you spin up a new tunnel*
 
-
-###### Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
-Start strapi
--cd strapi && npm run dev
-Find Auth0 Provider
--Go to http://localhost:1337/admin/settings/users-permissions/providers
--Click on the "Connect a provider" button
--Select Auth0
--Fill in the form with the Auth0 settings
--Click on save
-Configure Provider
-Enable: TRUE
-Client ID: 'Your Auth0 Client ID'
-Client Secret: 'Your Auth0 Client Secret'
-Host URI (Subdomain): 'Your Auth0 tenant url',(looks like this:dev-0e2aajac.us and it derives from dev-0e2aajac.us.auth0.com)
-The redirect URL to your front-end app: http://localhost:5173/auth/connect/auth0/callback
-
 ###### Spin up Strapi and Sveltekit
-spin up Strapi and sveltekit normally
+spin up Strapi and sveltekit normally in order to develop etc
