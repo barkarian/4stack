@@ -4,9 +4,11 @@
 - You will get 3 microservices:postgres,and 2 services
 - You will get the initial code directly to your github
 - You will get ci/cd for production for your project (on main branch)
+- Similarry with local deployment steps setup authentication
 
 #### Deploy locally
-###### Setup Auth0 Application for strapi connectivity (ONLY ONCE - SETUP)
+##### Setup
+###### 1.Setup Auth0 Application for strapi connectivity (ONLY ONCE - SETUP)
 1. Create a New Auth0 API (Applications→APIs→Create API)
 2. Create an application (applications→create application)
 -Create a name and select "machine to machine application then click on create
@@ -23,7 +25,7 @@ Add Auth0 Settings url inside dev-utils/.env:
 - Copy the auth0 settings page url and set it to the environment variable
 - Set the env variable to the url of this page **/dev-utils/.env->AUTH0_SETTINGS_URL**= *https://manage.auth0.com/dashboard/us/'some-id'/applications/'some-other-id'/settings*
 
-###### Setup dev-utils (ONLY ONCE - SETUP)
+###### 2.Setup dev-utils (ONLY ONCE - SETUP)
 ```
 cd dev-utils
 npm install
@@ -32,7 +34,7 @@ npm run generate-env-variables # will generate initial env variables for strapi
 - copy .env.example to .env and fill the values
 - remember to add **/dev-utils/.env->AUTH0_SETTINGS_URL** from *Setup Auth0 Application*
 
-###### Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
+###### 3.Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
 - cd strapi
 - npm run develp
 - Start strapi
@@ -50,7 +52,9 @@ npm run generate-env-variables # will generate initial env variables for strapi
         - Host URI (Subdomain): 'Your Auth0 tenant url',(looks like this:dev-0e2aajac.us and it derives from - dev-0e2aajac.us.auth0.com)
         - The redirect URL to your front-end app: http://localhost:5173/auth/connect/auth0/callback
 
+##### Spin up
 ###### Spin up dev-utils
+Run:
 ```
 cd dev-utils
 npm run start
@@ -60,5 +64,19 @@ npm run start
     - PUBLIC_STRAPI_URL enviroment variables will be set to this "NGROK_TUNNEL"(both on sveltekit/.env and strapi/.env)
     - *You will be reminded to update the auth0 configuration each time you spin up a new tunnel*
 
-###### Spin up Strapi and Sveltekit
-spin up Strapi and sveltekit normally in order to develop etc
+###### Spin up strapi
+(To develop and get access to powerful ai tools you first need to spin up dev-utils)
+Run:
+```
+cd strapi
+npm run dev
+```
+
+
+###### Spin up sveltekit
+(To develop and get access to powerful ai tools you first need to spin up dev-utils)
+Run:
+```
+cd sveltekit
+npm run dev
+```
