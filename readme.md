@@ -1,12 +1,12 @@
 ## Deploy with railway
-#### One click deployment and ci/cd on Railway ✨
+### One click deployment and ci/cd on Railway ✨
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/Yvibxa?referralCode=Uc3pOA)
 - You will get 3 microservices:postgres,and 2 services
 - You will get the initial code directly to your github
 - You will get ci/cd for production for your project (on main branch)
 - Similarry with local deployment steps setup authentication
 
-#### Deploy locally
+### Deploy locally
 ##### Setup
 ###### 1.Setup Auth0 Application for strapi connectivity (ONLY ONCE - SETUP)
 1. Create a New Auth0 API (Applications→APIs→Create API)
