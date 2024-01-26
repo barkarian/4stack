@@ -5,8 +5,8 @@
 - You will get the initial code directly to your github
 - You will get ci/cd for production for your project (on main branch)
 
-#### Deploy locally(with the help of dev utils)
-###### Setup Auth0 Application (for strapi connectivity)
+#### Deploy locally
+###### Setup Auth0 Application for strapi connectivity (ONLY ONCE - SETUP)
 1. Create a New Auth0 API (Applications→APIs→Create API)
 2. Create an application (applications→create application)
 -Create a name and select "machine to machine application then click on create
@@ -42,7 +42,7 @@ npm run start
     - *You will be reminded to update the auth0 configuration each time you spin up a new tunnel*
 
 
-###### Set-up Strapi Authentication with Auth0 ( ONLY ONCE- SETUP)
+###### Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
 Start strapi
 -cd strapi && npm run dev
 Find Auth0 Provider
