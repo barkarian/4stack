@@ -3,6 +3,7 @@ const currentDirectory = process.cwd();
 export const rootDirectory = path.dirname(currentDirectory);
 import fs from 'fs';
 import ignore from 'ignore';
+import { minimatch } from 'minimatch';
 
 export default function updateEnvVariable(envFile: string, envVariable: string, ngrokUrl: string): void {
     const data = fs.readFileSync(envFile, 'utf8');
@@ -96,7 +97,7 @@ export function getDirectoryTree(directory: string): FileNode {
     return root;
 }
 
-export function getDirectoryTreeWithIgnores(directory: string, nodeIgnore: string): FileNode {
+export function getIgnoredDirectoryTree(directory: string, nodeIgnore: string): FileNode {
     const ig = ignore().add(nodeIgnore);
     const root: FileNode = {
         name: path.basename(directory),
@@ -114,6 +115,48 @@ export function getDirectoryTreeWithIgnores(directory: string, nodeIgnore: strin
 
             // Ignore the file or directory if it matches the ignore rules
             if (ig.ignores(filePath)) {
+                return;
+            }
+
+            const fileNode: FileNode = {
+                name: file.name,
+                isDirectory,
+                path: filePath, // Set the path of the file node to the filePath
+                children: isDirectory ? [] : undefined
+            };
+
+            if (isDirectory) {
+                fileNode.children = [];
+                traverseDirectory(filePath, fileNode);
+            }
+
+            parentNode.children?.push(fileNode);
+        });
+    }
+
+    traverseDirectory(directory, root);
+
+    return root;
+}
+
+
+export function getIncludedDirectoryTree(directory: string, nodeInclude: string): FileNode {
+    const root: FileNode = {
+        name: path.basename(directory),
+        isDirectory: true,
+        path: directory, // Set the path of the root node to the directory
+        children: [],
+    };
+
+    function traverseDirectory(dir: string, parentNode: FileNode): void {
+        const files = fs.readdirSync(dir, { withFileTypes: true });
+
+        files.forEach((file) => {
+            const filePath = path.join(dir, file.name);
+            const isDirectory = file.isDirectory();
+
+            // Only include the file or directory if it matches the include rules
+            if (!minimatch(filePath, nodeInclude)) {
                 return;
             }
 
