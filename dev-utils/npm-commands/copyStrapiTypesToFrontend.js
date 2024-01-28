@@ -1,7 +1,8 @@
 //npm-script DEPENDANCE => dev-utils:copyStrapiTypesToFrontend
 import fs from 'fs';
 import path from 'path';
-import { rootDirectory } from '../pathUtils';
+const currentDirectory = process.cwd();
+const rootDirectory = path.dirname(currentDirectory);
 
 export const copyStrapiTypesToFrontend = (strapiPath, sveltekitPath) => {
     const sourcePath = path.join(rootDirectory, strapiPath);
