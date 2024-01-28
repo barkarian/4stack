@@ -12,7 +12,10 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"types-gen-strapi": "cd ../strapi && npm run types-gen-strapi && cd ../dev-utils && npm run types4strapi-copyto-sveltekit",
+		"types-gen-openapi": "",
+		"types-gen": "npm run types-gen-strapi && npm run types-gen-openapi"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
