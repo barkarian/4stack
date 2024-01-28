@@ -6,6 +6,8 @@
 - You will get ci/cd for production for your project (on main branch)
 - Similarry with local deployment steps setup authentication
 
+**After that create an auth0 application for production (Same process with the dev auth0 application that you will create for local development later)**
+
 ### Deploy locally
 ##### Setup
 ###### 1.Setup Auth0 Application for strapi connectivity (ONLY ONCE - SETUP)
@@ -79,4 +81,10 @@ Run:
 ```
 cd sveltekit
 npm run dev
+```
+
+##### Development scripts to know
+Run this to generate types for your development enviroment(run it from /sveltekit or from /strapi)
+```
+npm run types-gen #for sveltekit and strapi
 ```
