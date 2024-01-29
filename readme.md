@@ -14,18 +14,21 @@
 1. Create a New Auth0 API (Applications→APIs→Create API)
 2. Create an application (applications→create application)
 -Create a name and select "machine to machine application then click on create
-3. Configure the Auth0 application settings in the settings tab SET:
+3. Configure the Auth0 application settings: 
+- choose settings tab
 - Allowed Logout URLs: http://localhost:5173
 - Allowed Web Origins: http://localhost:5173
 
-*Scroll down to Advanced Settings->Grand Types(tab):*
+*Scroll down to Advanced Settings*
+- select Grand Types(tab)
 - Implicit
 - Authorization Code
 - Refresh Token
 - Client Credentials
+- click save changes
+- 1) Copy the auth0 url you are currently in 
 Add Auth0 Settings url inside dev-utils/.env:
-- Copy the auth0 settings page url and set it to the environment variable
-- Set the env variable to the url of this page **/dev-utils/.env->AUTH0_SETTINGS_URL**= *https://manage.auth0.com/dashboard/us/'some-id'/applications/'some-other-id'/settings*
+- 2) Set the env variable to the url of this page **/dev-utils/.env->AUTH0_SETTINGS_URL**= *https://manage.auth0.com/dashboard/us/'some-id'/applications/'some-other-id'/settings*
 
 ###### 2.Setup dev-utils (ONLY ONCE - SETUP)
 ```
@@ -38,7 +41,7 @@ npm run generate-env-variables # will generate initial env variables for strapi
 
 ###### 3.Set-up Strapi Authentication with Auth0 (ONLY ONCE- SETUP)
 - cd strapi
-- npm run develp
+- npm run develop
 - Start strapi
     - cd strapi && npm run dev
     Find Auth0 Provider
@@ -51,8 +54,8 @@ npm run generate-env-variables # will generate initial env variables for strapi
         - Enable: TRUE
         - Client ID: 'Your Auth0 Client ID'
         - Client Secret: 'Your Auth0 Client Secret'
-        - Host URI (Subdomain): 'Your Auth0 tenant url',(looks like this:dev-0e2aajac.us and it derives from - dev-0e2aajac.us.auth0.com)
-        - The redirect URL to your front-end app: http://localhost:5173/auth/connect/auth0/callback
+        - Host URI (Subdomain): 'Your Auth0 tenant url',(looks like this:dev-0e2aajac.us and it derives from DOMAIN: dev-0e2aajac.us.auth0.com)
+        - The redirect URL to your front-end app: http://localhost:5173/auth/connect/auth0/redirect
 
 ##### Spin up
 ###### Spin up dev-utils

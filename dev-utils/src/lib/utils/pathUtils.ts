@@ -17,7 +17,7 @@ export default function updateEnvVariable(envFile: string, envVariable: string, 
         updatedLines.push(`${envVariable}=${ngrokUrl}`);
     }
 
-    fs.writeFileSync(envFile, updatedLines.join('\n').slice(0, -1));
+    fs.writeFileSync(envFile, updatedLines.join('\n'));
 }
 
 export function overwriteFile(file: string, ctx: string): void {
