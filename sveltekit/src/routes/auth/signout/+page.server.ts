@@ -9,7 +9,6 @@ export const load: PageServerLoad = async (event) => {
     event.cookies.delete("jwt", {
         path: "/",
     })
-    console.log({ redirectUrlPath })
     return {
         redirectUrlPath
     }

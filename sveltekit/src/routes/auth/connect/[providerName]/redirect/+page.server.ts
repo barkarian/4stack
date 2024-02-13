@@ -18,7 +18,6 @@ export const load: PageServerLoad = async (event) => {
             throw new Error(`Couldn't login to Strapi. Status: ${response.status}\nJSON BODY: ${JSON.stringify(data)}`);
         }
         data = await response.json();
-        console.log({ data })
     } catch (err) {
         //Not Authenticated Schenario
         console.error("AUTHENTICATION ERROR:" + err);
