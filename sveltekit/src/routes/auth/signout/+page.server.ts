@@ -1,10 +1,10 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { SIGNOUT_REDIRECT } from '$env/static/private';
+import { AUTH_REDIRECTS } from '$lib/config/redirects';
 
 export const load: PageServerLoad = async (event) => {
     //<4S_CODE_BLOCK #You could add your custom code if needed
-    const redirectUrlPath: string = SIGNOUT_REDIRECT ?? "/"
+    const redirectUrlPath: string = AUTH_REDIRECTS.signoutRedirect ?? "/"
     //4S_CODE_BLOCK>
     event.cookies.delete("jwt", {
         path: "/",

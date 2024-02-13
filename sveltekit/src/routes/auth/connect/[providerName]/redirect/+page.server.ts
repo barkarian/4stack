@@ -3,9 +3,9 @@ import type { PageServerLoad } from './$types';
 import { PUBLIC_STRAPI_DOMAIN } from '$env/static/public';
 import { strapiApi } from '$lib/server/config/StrapiConfig';
 import type { StrapiEntity } from '$lib/types/strapi/StrapiTypes';
-import { SIGNIN_FAILURE_REDIRECT, SIGNIN_SUCCESS_REDIRECT } from '$env/static/private';
-let successRedirectUrlPath: string = SIGNIN_SUCCESS_REDIRECT ?? "/profile"
-const failureRedirectUrlPath: string = SIGNIN_FAILURE_REDIRECT ?? "/";
+import { AUTH_REDIRECTS } from '$lib/config/redirects';
+let successRedirectUrlPath: string = AUTH_REDIRECTS.singinSuccess ?? "/profile"
+const failureRedirectUrlPath: string = AUTH_REDIRECTS.signinFailure ?? "/";
 
 export const load: PageServerLoad = async (event) => {
     const callbackUrl = `${PUBLIC_STRAPI_DOMAIN}/api/auth/${event.params.providerName}/callback${event.url.search}`;
