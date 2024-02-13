@@ -93,6 +93,20 @@ Run this to generate types for your development enviroment(run it from /svelteki
 npm run types-gen #for sveltekit and strapi
 ```
 
+#### How the authentication is working?
+Login Button
+1) Calls strapi auth
+2) Strapi Calls auth0 
+3) auth0 send a response to frontend with a callback url for strapi
+4) frontend calls strapi 
+5) strapi verifies that the callback url is correct
+6) Strapi sends the jwt of the user to the client
+7) Sveltekit calls strapi again with his jwt token to users/me
+8) Strapi returns the custom user jwt and the custom user for local Storaging(YOU CAN MODIFY THE JWT AND USER DATA)
+How sveltekit authorization works?
+9) Sveltekit can now authorize the user on each request without talking to strapi
+10) hooks.server.ts will now verify the jwt on each request
+11) The authenticated user data will be inside **event.locals.authenticatedUserInfo**
 
 #### Tips for fast development
 You can use jwt for verification on sveltekit and on strapi as well.
