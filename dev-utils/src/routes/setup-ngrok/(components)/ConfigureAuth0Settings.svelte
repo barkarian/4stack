@@ -50,7 +50,7 @@
 						>Auth0 Settings</Button
 					>
 				</div>
-				<Button size="lg" variant="outline" on:click={() => goto('/assistant')}
+				<Button size="lg" variant="outline" on:click={() => goto('/instructions/step1')}
 					>I updated everything let's continue !</Button
 				>
 			</div>
