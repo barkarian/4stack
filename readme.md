@@ -4,7 +4,8 @@
 - You will get 3 microservices:postgres,and 2 services
 - You will get the initial code directly to your github
 - You will get ci/cd for production for your project (on main branch)
-- Similarry with local deployment steps setup authentication
+- Both services are now up 🚀
+- Setup authentication with auth0 (similarly with local deployment authentication setup)
 
 **After that create an auth0 application for production (Same process with the dev auth0 application that you will create for local development later)**
 
@@ -91,3 +92,9 @@ Run this to generate types for your development enviroment(run it from /svelteki
 ```
 npm run types-gen #for sveltekit and strapi
 ```
+
+
+#### Tips for fast development
+You can use jwt for verification on sveltekit and on strapi as well.
+- Add data to strapi jwt manually from /strapi/src/extensions/users-permissions/strapi-server.ts
+- Similarly look for this "4S_CODE_BLOCK" comment inside the code,in order to modify the core behavior of the initial system
