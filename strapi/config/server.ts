@@ -16,6 +16,6 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  url: env('URL'),
+  url: env('PUBLIC_STRAPI_DOMAIN'),
   proxy: true
 });
