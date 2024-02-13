@@ -3,6 +3,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
 	import { goto } from '$app/navigation';
+	import { Loader } from 'lucide-svelte';
 
 	export let data: PageData;
 	const { auth0CallbackUrlToSet, auth0SettingsUrl } = data;
@@ -25,9 +26,13 @@
 	<div class="flex h-full flex-col items-center justify-center">
 		<h1 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">Setup the tunnel</h1>
 		<div class="mt-8 w-full max-w-md">
-			<h2 class="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-				Setup the new tunnel before you continue !
-			</h2>
+			<h2 class="mb-4 text-lg font-medium text-gray-900 dark:text-white">Tunnel is open 🚀 ...</h2>
+			<div class="flex items-center space-x-2">
+				<p class="mb-1 text-sm text-gray-900 dark:text-white">
+					Setup the new tunnel before you continue !
+				</p>
+				<!-- <Loader></Loader> -->
+			</div>
 			<div class="space-y-4">
 				<div class="flex items-center justify-between rounded-md bg-gray-100 p-4 dark:bg-gray-700">
 					<div>
@@ -50,9 +55,13 @@
 						>Auth0 Settings</Button
 					>
 				</div>
-				<Button size="lg" variant="outline" on:click={() => goto('/instructions/step1')}
-					>I updated everything let's continue !</Button
-				>
+				<div class="flex items-center justify-between rounded-md bg-gray-100 p-4 dark:bg-gray-700">
+					<div>
+						<p class="mb-1 text-sm text-gray-900 dark:text-white">From root folder</p>
+						<p class="text-xs text-gray-500">cd strapi && yarn dev</p>
+						<p class="text-xs text-gray-500">cd sveltekit && yarn dev</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

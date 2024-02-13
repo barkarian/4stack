@@ -19,6 +19,8 @@ export async function startNgrok(): Promise<{
     auth0SettingsUrl: string | undefined,
     auth0CallbackUrlToSet: string | undefined
 }> {
+    await ngrok.disconnect(); // Optionally use ngrok.kill() if you want to ensure the ngrok process is completely stopped.
+
     // Read Auth0 URL from .env
     const auth0SettingsUrl = AUTH0_SETTINGS_URL
     if (!auth0SettingsUrl) {
