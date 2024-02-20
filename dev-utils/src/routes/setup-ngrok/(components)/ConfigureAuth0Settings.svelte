@@ -1,13 +1,9 @@
 <script lang="ts">
-	import type { PageData } from '../$types';
-	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
-	import { goto } from '$app/navigation';
-	import { Loader } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 
-	export let data: PageData;
-	const { auth0CallbackUrlToSet, auth0SettingsUrl } = data;
+	export let auth0SettingsUrl: string;
+	export let auth0CallbackUrlToSet: string;
 
 	function copyToClipboard(text: string) {
 		navigator.clipboard
@@ -38,8 +34,8 @@
 
 <!-- {JSON.stringify(data)} -->
 
-<div class="h-screen w-full bg-white p-8 dark:bg-gray-800">
-	<div class="flex h-full flex-col items-center justify-center">
+<div class="w-full bg-white p-8 dark:bg-gray-800">
+	<div class="flex flex-col items-center justify-center">
 		<h1 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">Setup the tunnel</h1>
 		<div class="mt-8 w-full max-w-md">
 			<h2 class="mb-4 text-lg font-medium text-gray-900 dark:text-white">Tunnel is open 🚀 ...</h2>
