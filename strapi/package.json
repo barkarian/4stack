@@ -8,9 +8,9 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "types-gen-strapi": "npm run strapi ts:generate-types --debug",
-    "types-gen-openapi": "",
-    "types-gen": "npm run types-gen-strapi && npm run types-gen-openapi"
+    "types-strapi": "npm run strapi ts:generate-types --debug",
+    "types-openapi": "",
+    "types-all": "npm run types-strapi && npm run types-openapi"
   },
   "devDependencies": {},
   "dependencies": {

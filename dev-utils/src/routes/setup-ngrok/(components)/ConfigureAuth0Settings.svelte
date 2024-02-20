@@ -4,6 +4,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { goto } from '$app/navigation';
 	import { Loader } from 'lucide-svelte';
+	import { toast } from 'svelte-sonner';
 
 	export let data: PageData;
 	const { auth0CallbackUrlToSet, auth0SettingsUrl } = data;
@@ -12,10 +13,25 @@
 		navigator.clipboard
 			.writeText(text)
 			.then(() => {
+				toast('Copied', {
+					description: `Text have been copied to clipboard.`
+					// action: {
+					// 	label: 'Undo',
+					// 	onClick: () => console.log('Undo')
+					// }
+				});
 				console.log('Text copied to clipboard');
 			})
 			.catch((error) => {
 				console.error('Failed to copy text to clipboard:', error);
+				toast('Something went wrong', {
+					description: `Text have not been copied to clipboard.`
+
+					// action: {
+					// 	label: 'Undo',
+					// 	onClick: () => console.log('Undo')
+					// }
+				});
 			});
 	}
 </script>

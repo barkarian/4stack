@@ -13,9 +13,9 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"types-gen-strapi": "cd ../strapi && npm run types-gen-strapi && cd ../dev-utils && npm run types4strapi-copy-to-sveltekit",
-		"types-gen-openapi": "",
-		"types-gen": "npm run types-gen-strapi && npm run types-gen-openapi"
+		"types-strapi": "cd ../strapi && npm run types-strapi && cd ../dev-utils && npm run types4strapi-copy-to-sveltekit",
+		"types-openapi": "",
+		"types-all": "npm run types-strapi && npm run types-openapi"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

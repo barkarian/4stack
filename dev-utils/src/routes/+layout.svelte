@@ -3,8 +3,11 @@
 	import { ModeWatcher, toggleMode } from 'mode-watcher';
 	import { Sun, Moon } from 'lucide-svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import RunScriptsNavBar from './(components)/RunScriptsNavBar.svelte';
+	import { Toaster } from '$lib/components/ui/sonner';
 </script>
 
+<Toaster />
 <ModeWatcher></ModeWatcher>
 <Button on:click={toggleMode} variant="outline" size="icon">
 	<Sun
@@ -15,4 +18,5 @@
 	/>
 	<span class="sr-only">Toggle theme</span>
 </Button>
+<RunScriptsNavBar></RunScriptsNavBar>
 <slot />
