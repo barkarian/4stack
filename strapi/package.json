@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "types-strapi": "npm run strapi ts:generate-types --debug",
-    "types-openapi": "",
+    "types-openapi": "cd ../dev-utils && npm run t4strapi-openapi-beds24",
     "types-all": "npm run types-strapi && npm run types-openapi"
   },
   "devDependencies": {},

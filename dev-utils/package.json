@@ -14,7 +14,9 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"generate-env-variables": "node npm-commands/generateEnvVariables.js",
-		"types4strapi-copy-to-sveltekit": "node npm-commands/copyStrapiTypesToFrontend.js"
+		"types4strapi-copy-to-sveltekit": "node npm-commands/copyStrapiTypesToFrontend.js",
+		"t4sveltekit-openapi-beds24": "openapi-generator-cli generate -i https://beds24.com/api/v2/apiV2.yaml -g typescript-fetch -o ../sveltekit/src/lib/openapi/beds24/codegen --skip-validate-spec",
+		"t4strapi-openapi-beds24": "openapi-generator-cli generate -i https://beds24.com/api/v2/apiV2.yaml -g typescript-fetch -o ../strapi/src/openapi/beds24/codegen --skip-validate-spec"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -45,6 +47,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@openapitools/openapi-generator-cli": "^2.9.0",
 		"bits-ui": "^0.15.1",
 		"clsx": "^2.1.0",
 		"ignore": "^5.3.0",
