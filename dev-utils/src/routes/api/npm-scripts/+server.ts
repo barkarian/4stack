@@ -1,13 +1,28 @@
-import { rootDirectory } from '$lib/utils/pathUtils.js';
-import { runNpmScript } from '$lib/utils/runNpmScript.js';
-import { json } from '@sveltejs/kit';
+export type FileContext = {
+    name: string,
+    relativePath: string,
+    path: string,
+    content: string
+}
 
-export async function POST({ request }) {
-    const { directory, scriptName } = await request.json();
-    console.log({
-        projectDirectory: `${rootDirectory}/${directory}`,
-        scriptName: `${scriptName}`
-    })
-    runNpmScript(`${rootDirectory}/${directory}`, `${scriptName}`)
-    return json("ok");
+export type AiPromptInput = {
+    model: "gpt-3.5-turbo" | "gpt-4-1106-preview",
+    system: string,
+    msg: string
+}
+
+export type AiPromptOutput = {
+    message: string,
+    error?: any
+}
+
+export type FetchBackendFilesOutput = {
+    availableFiles: FileContext[],
+    message: string,
+    error?: any
+}
+
+export type UpdateBackendFilesOutput = {
+    message: string,
+    error?: any
 }
