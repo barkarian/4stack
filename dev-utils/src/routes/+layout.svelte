@@ -6,6 +6,7 @@
 	import RunScriptsNavBar from './(components)/RunScriptsNavBar.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import TunnelModal from './(components)/TunnelModal.svelte';
+	import AiContextModal from './(components)/AiContextModal.svelte';
 </script>
 
 <Toaster />
@@ -22,8 +23,9 @@
 			<span class="sr-only">Toggle theme</span>
 		</Button>
 		<TunnelModal></TunnelModal>
+		<AiContextModal></AiContextModal>
 	</div>
-	<div>
+	<div class="flex items-center justify-between">
 		<RunScriptsNavBar></RunScriptsNavBar>
 	</div>
 </div>
