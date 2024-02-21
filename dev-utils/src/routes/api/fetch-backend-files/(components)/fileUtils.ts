@@ -1,6 +1,33 @@
 import fs from 'fs';
 import { rootDirectory } from '$lib/utils/pathUtils.js';
 
+type AttributeType = {
+    type: string;
+    relation?: string;
+    target?: string;
+    inversedBy?: string;
+    multiple?: boolean;
+    required?: boolean;
+    allowedTypes?: string[];
+};
+
+type SchemaContent = {
+    kind: string;
+    collectionName: string;
+    info: {
+        singularName: string;
+        pluralName: string;
+        displayName: string;
+        description: string;
+    };
+    options: {
+        draftAndPublish: boolean;
+    };
+    pluginOptions: {};
+    attributes: Record<string, AttributeType>;
+};
+
+
 export type FileContext = {
     name: string,
     relativePath: string,
@@ -91,10 +118,8 @@ export const getSchemaFilesToRead = (): SchemaFileContext[] => {
     }
 };
 
-// Assuming the rest of your codebase remains the same
-
-// Improved mapStrapiTypeToTypeScriptType function to handle complex types
-const mapStrapiTypeToTypeScriptType = (attribute: any, entityApiName: string) => {
+// Updated mapStrapiTypeToTypeScriptType function
+const mapStrapiTypeToTypeScriptType = (attribute: AttributeType) => {
     switch (attribute.type) {
         case 'string':
         case 'text':
@@ -111,50 +136,43 @@ const mapStrapiTypeToTypeScriptType = (attribute: any, entityApiName: string) =>
         case 'datetime':
             return 'Date';
         case 'relation':
-            // Handle relations by referencing other entity types
-            const relationType = `StrapiEntity<"${attribute.relation}">`;
-            // Check if it's a collection
-            if (attribute.relationType === 'oneToMany' || attribute.relationType === 'manyToMany') {
-                return `${relationType}[]`;
-            }
-            return relationType;
+            const relationType = `StrapiEntity<"${attribute.target}">`;
+            return attribute.multiple ? `${relationType}[]` : relationType;
         case 'media':
             return 'Media[]'; // Assuming media is always an array
         // Add more cases as needed
         default:
-            return 'any'; // Fallback type
+            return 'any'; // Fallback type for unsupported or custom types
     }
 };
 
 export const generateStrapiEntityTypes = (schemaFiles: SchemaFileContext[]): string => {
     let typeDefinitions = `type Media = { /* Define media type structure here */ };\n\n`;
 
-    // Start with an empty object to collect all entity types
+    // Dynamically generate type definitions
     let entityTypes: { [key: string]: string } = {};
 
     schemaFiles.forEach(schemaFile => {
-        const schema = JSON.parse(schemaFile.content);
+        const schema: SchemaContent = JSON.parse(schemaFile.content);
         const entityApiName = schemaFile.entityApiName;
         let typeDefinition = `{\n`;
 
-        Object.keys(schema.attributes).forEach(attributeKey => {
-            const attribute = schema.attributes[attributeKey];
-            typeDefinition += `    ${attributeKey}: ${mapStrapiTypeToTypeScriptType(attribute, entityApiName)};\n`;
+        Object.entries(schema.attributes).forEach(([attributeKey, attribute]) => {
+            typeDefinition += `    ${attributeKey}: ${mapStrapiTypeToTypeScriptType(attribute)};\n`;
         });
 
         typeDefinition += `}`;
-
-        // Store the type definition using the entityApiName as the key
         entityTypes[entityApiName] = typeDefinition;
     });
 
-    // Generate the final type definition string
+    // Generate TypeScript type definitions
     typeDefinitions += `type StrapiEntity<T> =\n`;
     Object.entries(entityTypes).forEach(([entityApiName, typeDefinition], index, array) => {
         typeDefinitions += `  T extends "${entityApiName}" ? ${typeDefinition}\n  :`;
         if (index < array.length - 1) {
             typeDefinitions += `\n`;
         } else {
+            typeDefinitions += ` T extends "plugin::users-permissions.role"? any\n  :`;
             typeDefinitions += ` never;\n`;
         }
     });
