@@ -57,5 +57,5 @@ export function generateEnvVariables(): void {
     const sveltekitCtx: string = getSveltekitEnvFileInitCtx(JWT_SECRET);
     overwriteFile(`${rootDirectory}/sveltekit/.env`, sveltekitCtx);
     console.log("New env variables have been configured")
-    console.log({ strapiCtx, sveltekitCtx });
+    // console.log({ strapiCtx, sveltekitCtx });
 }

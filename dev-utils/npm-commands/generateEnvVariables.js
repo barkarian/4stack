@@ -56,9 +56,9 @@ JWT_SECRET=${JWT_SECRET}`;
 function generateEnvVariables() {
     const JWT_SECRET = generateKey();
     const strapiCtx = getStrapiEnvFileInitCtx(JWT_SECRET);
-    //overwriteFile(`${rootDirectory}/strapi/.env`, strapiCtx);
+    overwriteFile(`${rootDirectory}/strapi/.env`, strapiCtx);
     const sveltekitCtx = getSveltekitEnvFileInitCtx(JWT_SECRET);
-    //overwriteFile(`${rootDirectory}/sveltekit/.env`, sveltekitCtx);
+    overwriteFile(`${rootDirectory}/sveltekit/.env`, sveltekitCtx);
     console.log({ strapiCtx, sveltekitCtx });
 }
 generateEnvVariables()

@@ -34,7 +34,6 @@
 				// }
 			});
 			const data = await response.json();
-			console.log(data); // Or display this data on the UI
 		} catch (e) {
 			toast('${scriptName} for ${directory} have not been created.', {
 				description: `Check your ${directory} console to see the error.`

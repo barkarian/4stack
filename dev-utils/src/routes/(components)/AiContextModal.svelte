@@ -16,7 +16,6 @@
 		const res = await fetch('/api/fetch-ai-context');
 		const data = await res.json();
 		contexts = data.contexts;
-		console.log({ contexts });
 	});
 
 	// Function to copy content to the clipboard

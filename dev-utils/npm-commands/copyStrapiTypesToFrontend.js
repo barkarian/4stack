@@ -25,7 +25,6 @@ export const copyStrapiTypesToFrontend = (strapiPath, sveltekitPath) => {
     const modifiedContent = content.replace('@strapi/strapi', '@strapi/types');
 
     try {
-        console.log({ destinationPath, modifiedContent })
         fs.writeFileSync(destinationPath, modifiedContent);
         console.log('File copied and modified successfully!');
         return 'ok';

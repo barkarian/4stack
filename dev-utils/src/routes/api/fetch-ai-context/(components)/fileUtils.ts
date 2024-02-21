@@ -103,7 +103,7 @@ export const getSchemaFilesToRead = (): SchemaFileContext[] => {
             // Derive entityApiName based on the relativePath of the file
             const isPlugin = file.relativePath.includes("/extensions/");
             const parts = file.relativePath.split('/');
-            console.log({ parts })
+            // console.log({ parts })
             const entityNameFirst = parts[parts.length - 4]; // Assuming entity name is always 3rd from last
             const entityNameLast = parts[parts.length - 2]; // Assuming entity name is always 3rd from last
 
