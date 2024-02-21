@@ -3,7 +3,7 @@ import { rootDirectory } from '$lib/utils/pathUtils.js';
 
 type AttributeType = {
     type: string;
-    relation?: string;
+    relation?: string; //manyToOne, oneToMany, oneToOne, manyToMany
     target?: string;
     inversedBy?: string;
     multiple?: boolean;
@@ -120,31 +120,42 @@ export const getSchemaFilesToRead = (): SchemaFileContext[] => {
 
 // Updated mapStrapiTypeToTypeScriptType function
 const mapStrapiTypeToTypeScriptType = (attribute: AttributeType) => {
+    let baseType: string; // Base type without considering multiplicity
     switch (attribute.type) {
         case 'string':
         case 'text':
         case 'enumeration':
-            return 'string';
+            baseType = 'string';
+            break;
         case 'integer':
         case 'biginteger':
         case 'float':
         case 'decimal':
-            return 'number';
+            baseType = 'number';
+            break;
         case 'boolean':
-            return 'boolean';
+            baseType = 'boolean';
+            break;
         case 'date':
         case 'datetime':
-            return 'Date';
+            baseType = 'Date';
+            break;
         case 'relation':
             const relationType = `StrapiEntity<"${attribute.target}">`;
-            return attribute.multiple ? `${relationType}[]` : relationType;
+            baseType = relationType;
+            break;
         case 'media':
-            return 'Media[]'; // Assuming media is always an array
-        // Add more cases as needed
+            baseType = 'Media';
+            break;
         default:
-            return 'any'; // Fallback type for unsupported or custom types
+            baseType = 'any'; // Fallback type for unsupported or custom types
     }
+
+    // Determine if the attribute represents an array/multiple values
+    const isArray = attribute.multiple || attribute.relation === 'manyToMany' || attribute.relation === 'oneToMany';
+    return isArray ? `${baseType}[]` : baseType;
 };
+
 
 export const generateStrapiEntityTypes = (schemaFiles: SchemaFileContext[]): string => {
     let typeDefinitions = `type Media = { /* Define media type structure here */ };\n\n`;
