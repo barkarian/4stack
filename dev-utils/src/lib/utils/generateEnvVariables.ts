@@ -1,5 +1,6 @@
 import fs from 'fs';
 import crypto from 'crypto';
+import { rootDirectory } from './pathUtils';
 
 function overwriteFile(file: string, ctx: string): void {
     //Check if file exists and if it does, delete it
@@ -52,9 +53,9 @@ JWT_SECRET=${JWT_SECRET}`;
 export function generateEnvVariables(): void {
     const JWT_SECRET: string = generateKey();
     const strapiCtx: string = getStrapiEnvFileInitCtx(JWT_SECRET);
-    //overwriteFile(`${rootDirectory}/strapi/.env`, strapiCtx);
+    overwriteFile(`${rootDirectory}/strapi/.env`, strapiCtx);
     const sveltekitCtx: string = getSveltekitEnvFileInitCtx(JWT_SECRET);
-    //overwriteFile(`${rootDirectory}/sveltekit/.env`, sveltekitCtx);
+    overwriteFile(`${rootDirectory}/sveltekit/.env`, sveltekitCtx);
     console.log("New env variables have been configured")
     console.log({ strapiCtx, sveltekitCtx });
 }

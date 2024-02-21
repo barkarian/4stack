@@ -67,6 +67,18 @@
     },
     "meta": {
       "type": "string"
+    },
+    "ownedProperties": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::property.property",
+      "mappedBy": "owner"
+    },
+    "relatedProperties": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::property.property",
+      "mappedBy": "relatedUsers"
     }
   }
 }
