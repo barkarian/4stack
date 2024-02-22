@@ -1,8 +1,17 @@
 {
   "extends": "@strapi/typescript-utils/tsconfigs/server",
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": {
+      "$root/*": [
+        "./*"
+      ]
+    },
   },
   "include": [
     "./",

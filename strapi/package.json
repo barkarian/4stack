@@ -24,7 +24,8 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
     "strapi-plugin-transformer": "^3.1.2",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "typescript-fetch": "^0.0.4"
   },
   "author": {
     "name": "A Strapi developer"
