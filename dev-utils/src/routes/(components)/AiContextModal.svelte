@@ -13,11 +13,11 @@
 		content: string;
 	};
 
-	onMount(async () => {
+	const openModal = async () => {
 		const res = await fetch('/api/fetch-ai-context');
 		const data = await res.json();
 		contexts = data.contexts;
-	});
+	};
 
 	// Function to copy content to the clipboard
 	async function copyToClipboard(content: string) {
@@ -38,7 +38,9 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Ai Context</Dialog.Trigger>
+	<Dialog.Trigger on:click={() => openModal()} class={buttonVariants({ variant: 'outline' })}
+		>Ai Context</Dialog.Trigger
+	>
 	<Dialog.Content class="sm:max-w-[1000px]">
 		<Dialog.Header>
 			<Dialog.Title>Ai Context</Dialog.Title>

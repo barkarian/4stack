@@ -9,6 +9,7 @@ import { generateStrapiEntityTypes, getSchemaFilesToRead } from "../../../lib/ut
 
 export const GET: RequestHandler = async ({ request }) => {
     try {
+        // console.log("heyy")
         const schemaFiles = getSchemaFilesToRead();
         const code = generateStrapiEntityTypes(schemaFiles)
         //add code to rootDirectory/dev-utils/src/lib/ai-context/core/readableEntityTypes.txt
