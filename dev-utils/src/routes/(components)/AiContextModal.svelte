@@ -5,6 +5,7 @@
 	import * as Accordion from '$lib/components/ui/accordion';
 	import { Clipboard } from 'lucide-svelte'; // Import the Clipboard icon
 	import { toast } from 'svelte-sonner';
+	import Markdown from '$lib/components/other/Markdown.svelte';
 
 	let contexts: AiContextFile[] = [];
 	type AiContextFile = {
@@ -58,7 +59,8 @@
 						</button>
 						<Accordion.Trigger>{item.contextName}</Accordion.Trigger>
 						<Accordion.Content>
-							{item.content}
+							<!-- {item.content} -->
+							<Markdown mdString={item.content}></Markdown>
 						</Accordion.Content>
 					</Accordion.Item>
 				{/each}
