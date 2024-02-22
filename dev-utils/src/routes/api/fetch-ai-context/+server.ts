@@ -12,7 +12,7 @@ export const GET: RequestHandler = async ({ request }) => {
         const schemaFiles = getSchemaFilesToRead();
         const code = generateStrapiEntityTypes(schemaFiles)
         //add code to rootDirectory/dev-utils/src/lib/ai-context/core/readableEntityTypes.txt
-        const filePath = path.join(rootDirectory, 'dev-utils/src/lib/ai-context/core/readableEntityTypes.txt');
+        const filePath = path.join(rootDirectory, 'dev-utils/src/lib/ai-context/core/readableEntityTypes.md');
 
         await fs.writeFile(filePath, code, 'utf8');
         //Fetch all files in dev-utils/src/lib/ai-context/<any>/<any>.txt and add them in an array with an object of: parrent folder name and context of the file

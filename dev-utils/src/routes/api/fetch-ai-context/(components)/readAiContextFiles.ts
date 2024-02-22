@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { rootDirectory } from "$lib/utils/pathUtils";
 
-// Function to read all .txt files under a given directory and its subdirectories
+// Function to read all .md files under a given directory and its subdirectories
 export async function readAiContextFiles() {
     const baseDir = path.join(rootDirectory, 'dev-utils/src/lib/ai-context');
     const contexts = [];
@@ -14,14 +14,14 @@ export async function readAiContextFiles() {
             const files = await fs.readdir(dirPath, { withFileTypes: true });
 
             for (const file of files) {
-                if (file.isFile() && file.name.endsWith('.txt')) {
+                if (file.isFile() && file.name.endsWith('.md')) {
                     const filePath = path.join(dirPath, file.name);
                     const content = await fs.readFile(filePath, 'utf8');
                     let contextName = dir.name; // Default contextName assignment
 
                     // Check if we are in the 'core' directory and adjust contextName accordingly
                     if (dirPath.endsWith('/core') || dirPath.endsWith('\\core')) {
-                        contextName = "core-" + file.name.slice(0, -4); // Remove .txt extension for contextName
+                        contextName = "core-" + file.name.slice(0, -3); // Remove .md extension for contextName
                     }
 
                     contexts.push({ contextName, content });
