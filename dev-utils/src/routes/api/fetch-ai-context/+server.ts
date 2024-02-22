@@ -17,9 +17,8 @@ export const GET: RequestHandler = async ({ request }) => {
         await fs.writeFile(filePath, code, 'utf8');
         //Fetch all files in dev-utils/src/lib/ai-context/<any>/<any>.txt and add them in an array with an object of: parrent folder name and context of the file
         const contexts = await readAiContextFiles();
-        // Return the schema files and code as before
+        //Return the schema files and code as before
         return json({ contexts });
-
     } catch (e) {
         throw new Error("something went wrong");
     }
