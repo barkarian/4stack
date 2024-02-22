@@ -3,8 +3,8 @@ import { json } from '@sveltejs/kit';
 import { rootDirectory } from "$lib/utils/pathUtils";
 import path from 'path';
 import { promises as fs } from 'fs';
-import { readAiContextFiles } from "./(components)/readAiContextFiles";
-import { generateStrapiEntityTypes, getSchemaFilesToRead } from "./(components)/fileUtils";
+import { readAiContextFiles } from "../../../lib/utils/file-utils/readAiContextFiles";
+import { generateStrapiEntityTypes, getSchemaFilesToRead } from "../../../lib/utils/file-utils/fileUtils";
 
 
 export const GET: RequestHandler = async ({ request }) => {
@@ -23,6 +23,3 @@ export const GET: RequestHandler = async ({ request }) => {
         throw new Error("something went wrong");
     }
 };
-
-
-
